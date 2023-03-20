@@ -1,5 +1,3 @@
-'use client'
-
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { AuthValueProps } from './types'
@@ -14,7 +12,7 @@ export const useAuth = () => {
 	return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentUser, setCurrentUser] = useState<User>()
 
 	function logout() {

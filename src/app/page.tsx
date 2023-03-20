@@ -3,8 +3,7 @@ import { Metadata } from 'next'
 
 import { ToggleThemeButton } from '@/components/Button/ToggleThemeButton'
 
-import { auth } from '@/services/firebase/app'
-import { signIn } from '@/services/firebase/auth'
+import { useAuth } from '@/providers/AuthProvider'
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -12,19 +11,12 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-	async function doisA() {
-		await signIn()
-	}
-
-	function getUser() {
-		console.log(auth.currentUser)
-	}
-
+	const { currentUser, login, logout } = useAuth()
 	return (
 		<>
-			<button onClick={doisA}>Hellow</button>
-			<button onClick={() => auth.signOut()}>SignOut</button>
-			<button onClick={() => getUser()}>Get User</button>
+			<button onClick={login}>Sign In</button>
+			<button onClick={logout}>SignOut</button>
+			<p>{currentUser?.displayName || 'No user is logged'}</p>
 
 			<ToggleThemeButton />
 		</>

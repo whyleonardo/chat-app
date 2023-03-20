@@ -1,5 +1,7 @@
 'use client'
+import { AuthProvider } from '@/providers/AuthProvider'
 import { ChakraProvider } from '@/providers/ChakraProvider'
+import { auth } from '@/services/firebase/app'
 import { Stack } from '@chakra-ui/react'
 
 export default function RootLayout({
@@ -11,11 +13,13 @@ export default function RootLayout({
 		<html>
 			<head />
 			<body>
-				<ChakraProvider>
-					<Stack h="100vh" justifyContent="center" alignItems="center">
-						{children}
-					</Stack>
-				</ChakraProvider>
+				<AuthProvider>
+					<ChakraProvider>
+						<Stack h="100vh" justifyContent="center" alignItems="center">
+							{children}
+						</Stack>
+					</ChakraProvider>
+				</AuthProvider>
 			</body>
 		</html>
 	)

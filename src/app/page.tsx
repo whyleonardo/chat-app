@@ -1,8 +1,10 @@
+'use client'
 import { Metadata } from 'next'
 
 import { ToggleThemeButton } from '@/components/Button/ToggleThemeButton'
 
-// import { Stack } from '@chakra-ui/react'
+import { auth } from '@/services/firebase/app'
+import { signIn } from '@/services/firebase/auth'
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -10,9 +12,21 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+	async function doisA() {
+		await signIn()
+	}
+
+	function getUser() {
+		console.log(auth.currentUser)
+	}
+
 	return (
-		// <Stack>
-		<ToggleThemeButton />
-		// </Stack>
+		<>
+			<button onClick={doisA}>Hellow</button>
+			<button onClick={() => auth.signOut()}>SignOut</button>
+			<button onClick={() => getUser()}>Get User</button>
+
+			<ToggleThemeButton />
+		</>
 	)
 }

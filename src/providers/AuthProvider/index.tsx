@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { AuthValueProps } from './types'
@@ -15,6 +16,8 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentUser, setCurrentUser] = useState<User>()
 
+	const router = useRouter()
+
 	function logout() {
 		return signOut(auth)
 	}
@@ -27,6 +30,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		onAuthStateChanged(auth, (current) => {
 			if (current) {
 				setCurrentUser(current)
+				router.push('/dashboard')
+			} else {
+				router.push('/')
 			}
 		})
 	}, [])

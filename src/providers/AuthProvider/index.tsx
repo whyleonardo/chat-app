@@ -34,19 +34,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			if (current) {
 				setIsLoadingUser(true)
 				new Promise((resolve) => {
+					resolve(setCurrentUser(current))
+				}).then(() => {
 					setTimeout(() => {
-						resolve(setCurrentUser(current))
-					}, 1000)
-				}).then(() => setIsLoadingUser(false))
-				router.push('/dashboard')
+						setIsLoadingUser(false)
+					}, 2000)
+					router.push('/dashboard')
+				})
 			} else {
 				setIsLoadingUser(true)
 				new Promise((resolve) => {
+					resolve(setCurrentUser(current))
+				}).then(() => {
 					setTimeout(() => {
-						resolve(setCurrentUser(current))
-					}, 1000)
-				}).then(() => setIsLoadingUser(false))
-				router.push('/')
+						setIsLoadingUser(false)
+					}, 2000)
+					router.push('/')
+				})
 			}
 		})
 	})

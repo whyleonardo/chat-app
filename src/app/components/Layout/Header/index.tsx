@@ -21,13 +21,19 @@ export const Header = () => {
 	const photoURL = currentUser?.photoURL || undefined
 
 	return (
-		<HStack px="8" border="1px" h="16" justifyContent="flex-end">
+		<HStack
+			px="8"
+			borderBottom="1px"
+			h="16"
+			alignItems="center"
+			justifyContent="flex-end"
+		>
 			<HStack>
 				{isLoadingUser ? (
 					<Spinner />
 				) : (
 					<>
-						<div className="hidden md:flex space-x-6">
+						<div className="hidden md:flex md:space-x-6 md:items-center">
 							<ToggleThemeButton />
 							<SignInButton />
 							<Avatar size="sm" name={displayName} src={photoURL} />
@@ -56,11 +62,11 @@ const MenuMobile = ({
 				</MenuButton>
 				<MenuList className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
 					<MenuItem>
-						<SignInButton />
+						<SignInButton isMenuButton />
 					</MenuItem>
 
 					<MenuItem>
-						<ToggleThemeButton title="ToggleTheme" isText />
+						<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
 					</MenuItem>
 				</MenuList>
 			</Menu>

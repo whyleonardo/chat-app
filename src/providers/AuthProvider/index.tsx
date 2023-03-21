@@ -32,28 +32,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		onAuthStateChanged(auth, (current) => {
 			if (current) {
-				setIsLoadingUser(true)
-				new Promise((resolve) => {
-					resolve(setCurrentUser(current))
-				}).then(() => {
-					setTimeout(() => {
-						setIsLoadingUser(false)
-					}, 2000)
-					router.push('/dashboard')
-				})
+				setCurrentUser(current)
+				router.push('/dashboard')
 			} else {
-				setIsLoadingUser(true)
-				new Promise((resolve) => {
-					resolve(setCurrentUser(current))
-				}).then(() => {
-					setTimeout(() => {
-						setIsLoadingUser(false)
-					}, 2000)
-					router.push('/')
-				})
+				setCurrentUser(current)
+				router.push('/')
 			}
 		})
 	})
+
+	useEffect(() => {
+		new Promise((resolve) => {
+			resolve(setIsLoadingUser(true))
+		}).then(() => {
+			setTimeout(() => {
+				setIsLoadingUser(false)
+			}, 2000)
+		})
+	}, [currentUser])
 
 	const values = {
 		currentUser,

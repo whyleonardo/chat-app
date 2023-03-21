@@ -1,4 +1,7 @@
 'use client'
+
+import '../styles/tailwind/styles.css'
+
 import { AuthProvider } from '@/providers/AuthProvider'
 import { ChakraProvider } from '@/providers/ChakraProvider'
 import { QueryProvider } from '@/providers/QueryProvider'

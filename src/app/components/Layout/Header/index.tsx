@@ -1,6 +1,7 @@
 'use client'
 
 import { SignInButton } from 'components/Button/SignInButton'
+import { ToggleThemeButton } from 'components/Button/ToggleThemeButton'
 
 import { useAuth } from '@/providers/AuthProvider'
 import { HStack, Avatar, Spinner } from '@chakra-ui/react'

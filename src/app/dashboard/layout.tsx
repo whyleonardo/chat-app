@@ -1,6 +1,6 @@
 'use client'
-import { Header } from '@/components/Layout/Header'
-import { Sidebar } from '@/components/Layout/Sidebar'
+import { Header } from 'components/Layout/Header'
+import { Sidebar } from 'components/Layout/Sidebar'
 
 import { Grid, GridItem } from '@chakra-ui/react'
 

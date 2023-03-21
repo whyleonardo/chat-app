@@ -1,7 +1,7 @@
 'use client'
 import { AuthProvider } from '@/providers/AuthProvider'
 import { ChakraProvider } from '@/providers/ChakraProvider'
-import { Stack } from '@chakra-ui/react'
+import { QueryProvider } from '@/providers/QueryProvider'
 
 export default function RootLayout({
 	children
@@ -13,11 +13,9 @@ export default function RootLayout({
 			<head />
 			<body>
 				<AuthProvider>
-					<ChakraProvider>
-						<Stack h="100vh" justifyContent="center" alignItems="center">
-							{children}
-						</Stack>
-					</ChakraProvider>
+					<QueryProvider>
+						<ChakraProvider>{children}</ChakraProvider>
+					</QueryProvider>
 				</AuthProvider>
 			</body>
 		</html>

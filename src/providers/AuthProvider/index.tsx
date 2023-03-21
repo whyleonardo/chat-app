@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -14,7 +16,8 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const [currentUser, setCurrentUser] = useState<User>()
+	const [currentUser, setCurrentUser] = useState<User | null>()
+	const [isLoadingUser, setIsLoadingUser] = useState(false)
 
 	const router = useRouter()
 
@@ -29,19 +32,31 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		onAuthStateChanged(auth, (current) => {
 			if (current) {
-				setCurrentUser(current)
+				setIsLoadingUser(true)
+				new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(setCurrentUser(current))
+					}, 1000)
+				}).then(() => setIsLoadingUser(false))
 				router.push('/dashboard')
 			} else {
+				setIsLoadingUser(true)
+				new Promise((resolve) => {
+					setTimeout(() => {
+						resolve(setCurrentUser(current))
+					}, 1000)
+				}).then(() => setIsLoadingUser(false))
 				router.push('/')
 			}
 		})
-	}, [])
+	})
 
 	const values = {
 		currentUser,
 		auth,
 		logout,
-		login
+		login,
+		isLoadingUser
 	}
 
 	return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>

@@ -12,6 +12,7 @@ export const ToggleThemeButton = ({
 	isText?: boolean
 	isMenuButton?: boolean
 }) => {
+	const isDark = true
 	return (
 		<button
 			className={clsx(

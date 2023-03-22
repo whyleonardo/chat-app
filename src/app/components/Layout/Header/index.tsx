@@ -4,15 +4,8 @@ import { SignInButton } from 'components/Button/SignInButton'
 import { ToggleThemeButton } from 'components/Button/ToggleThemeButton'
 
 import { useAuth } from '@/providers/AuthProvider'
-import {
-	HStack,
-	Avatar,
-	Spinner,
-	Menu,
-	MenuButton,
-	MenuList,
-	MenuItem
-} from '@chakra-ui/react'
+import * as Avatar from '@radix-ui/react-avatar'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 export const Header = () => {
 	const { currentUser, isLoadingUser } = useAuth()
@@ -21,29 +14,26 @@ export const Header = () => {
 	const photoURL = currentUser?.photoURL || undefined
 
 	return (
-		<HStack
-			px="8"
-			borderBottom="1px"
-			h="16"
-			alignItems="center"
-			justifyContent="flex-end"
-		>
-			<HStack>
+		<div>
+			<div>
 				{isLoadingUser ? (
-					<Spinner />
+					'Carregando'
 				) : (
 					<>
 						<div className="hidden md:flex md:space-x-6 md:items-center">
 							<ToggleThemeButton />
 							<SignInButton />
-							<Avatar size="sm" name={displayName} src={photoURL} />
+							<Avatar.Root>
+								<Avatar.Image alt={displayName} src={photoURL} />
+								<Avatar.Fallback>CT</Avatar.Fallback>
+							</Avatar.Root>
 						</div>
 
 						<MenuMobile displayName={displayName} photoURL={photoURL} />
 					</>
 				)}
-			</HStack>
-		</HStack>
+			</div>
+		</div>
 	)
 }
 
@@ -56,20 +46,26 @@ const MenuMobile = ({
 }) => {
 	return (
 		<div className="flex md:hidden">
-			<Menu>
-				<MenuButton>
-					<Avatar size="sm" name={displayName} src={photoURL} />
-				</MenuButton>
-				<MenuList className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
-					<MenuItem>
-						<SignInButton isMenuButton />
-					</MenuItem>
+			<DropdownMenu.Root>
+				<DropdownMenu.Trigger asChild>
+					<Avatar.Root>
+						<Avatar.Image alt={displayName} src={photoURL} />
+						<Avatar.Fallback>CT</Avatar.Fallback>
+					</Avatar.Root>
+				</DropdownMenu.Trigger>
 
-					<MenuItem>
-						<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
-					</MenuItem>
-				</MenuList>
-			</Menu>
+				<DropdownMenu.Portal>
+					<DropdownMenu.Content>
+						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
+							<SignInButton isMenuButton />
+						</DropdownMenu.Item>
+
+						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
+							<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
+						</DropdownMenu.Item>
+					</DropdownMenu.Content>
+				</DropdownMenu.Portal>
+			</DropdownMenu.Root>
 		</div>
 	)
 }

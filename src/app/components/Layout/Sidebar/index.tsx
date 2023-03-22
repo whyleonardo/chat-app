@@ -1,11 +1,9 @@
 'use client'
 
-import { Stack } from '@chakra-ui/react'
-
 export const Sidebar = () => {
 	return (
-		<Stack border="1px">
+		<div>
 			<p> Sidebar </p>
-		</Stack>
+		</div>
 	)
 }

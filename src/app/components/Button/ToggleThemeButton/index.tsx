@@ -1,6 +1,5 @@
 'use client'
 
-import { useColorMode } from '@chakra-ui/react'
 import { Sun, Moon } from '@phosphor-icons/react'
 import clsx from 'clsx'
 
@@ -13,9 +12,6 @@ export const ToggleThemeButton = ({
 	isText?: boolean
 	isMenuButton?: boolean
 }) => {
-	const { toggleColorMode, colorMode } = useColorMode()
-
-	const isDark = colorMode === 'dark'
 	return (
 		<button
 			className={clsx(
@@ -23,7 +19,6 @@ export const ToggleThemeButton = ({
 				isMenuButton &&
 					'dark:text-black hover:text-white/50 dark:hover:text-white/50'
 			)}
-			onClick={toggleColorMode}
 		>
 			{isText ? (
 				title

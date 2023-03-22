@@ -11,10 +11,6 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-	const isSSR = typeof window === 'undefined'
-
-	console.log(isSSR)
-
 	return (
 		<>
 			<SignInButton />

@@ -3,7 +3,6 @@
 import '../styles/tailwind/styles.css'
 
 import { AuthProvider } from '@/providers/AuthProvider'
-import { ChakraProvider } from '@/providers/ChakraProvider'
 import { QueryProvider } from '@/providers/QueryProvider'
 
 export default function RootLayout({
@@ -16,9 +15,7 @@ export default function RootLayout({
 			<head />
 			<body>
 				<AuthProvider>
-					<QueryProvider>
-						<ChakraProvider>{children}</ChakraProvider>
-					</QueryProvider>
+					<QueryProvider>{children}</QueryProvider>
 				</AuthProvider>
 			</body>
 		</html>

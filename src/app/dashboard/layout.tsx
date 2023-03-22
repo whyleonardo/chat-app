@@ -9,39 +9,16 @@ export default function DashboardLayout({
 }) {
 	return (
 		<div className="border flex flex-col">
-			<div>
+			<div className="flex justify-end px-8 py-2 border border-red-500">
 				<Header />
 			</div>
 
-			<div>
-				<div>
+			<div className="flex">
+				<div className="border w-72 border-blue-500">
 					<Sidebar />
 				</div>
-				<div>{children}</div>
+				<div className="border border-green-500 w-full">{children}</div>
 			</div>
 		</div>
 	)
-}
-
-{
-	/*
-	<Grid
-		h="100vh"
-		w="100vw"
-		templateAreas={`
-					"header header"
-					"sidebar main"`}
-		gridTemplateRows="50px 1fr 30px"
-		gridTemplateColumns="300px 1fr"
-		gap="5"
-	>
-		<GridItem gridArea="header">
-		</GridItem>
-
-		<GridItem gridArea="sidebar">
-		</GridItem>
-
-		<GridItem gridArea="main"></GridItem>
-	</Grid>
- */
 }

@@ -1,5 +1,8 @@
 'use client'
 
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+
 import { Sun, Moon } from '@phosphor-icons/react'
 import clsx from 'clsx'
 
@@ -12,14 +15,36 @@ export const ToggleThemeButton = ({
 	isText?: boolean
 	isMenuButton?: boolean
 }) => {
-	const isDark = true
+	const [mounted, setMounted] = useState(false)
+	const { theme, setTheme } = useTheme()
+	const isDark = theme === 'dark'
+
+	function handleChangeTheme() {
+		if (isDark) {
+			setTheme('light')
+		} else {
+			setTheme('dark')
+		}
+	}
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (!mounted) {
+		return null
+	}
+
+	console.log(isMenuButton)
+
 	return (
 		<button
 			className={clsx(
-				'text-black dark:text-white dark:hover:text-yellow-500 hover:text-yellow-500 transition duration-150',
-				isMenuButton &&
-					'dark:text-black hover:text-white/50 dark:hover:text-white/50'
+				'text-black dark:text-white transition duration-150',
+				!isMenuButton && 'dark:hover:text-yellow-500 hover:text-yellow-500',
+				isMenuButton && 'hover:text-white/50 dark:hover:text-white/50'
 			)}
+			onClick={handleChangeTheme}
 		>
 			{isText ? (
 				title

@@ -24,7 +24,11 @@ export const Header = () => {
 							<ToggleThemeButton />
 							<SignInButton />
 							<Avatar.Root>
-								<Avatar.Image alt={displayName} src={photoURL} />
+								<Avatar.Image
+									alt={displayName}
+									src={photoURL}
+									className="w-10 rounded-full"
+								/>
 								<Avatar.Fallback>CT</Avatar.Fallback>
 							</Avatar.Root>
 						</div>
@@ -49,8 +53,12 @@ const MenuMobile = ({
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild>
 					<Avatar.Root>
-						<Avatar.Image alt={displayName} src={photoURL} />
-						<Avatar.Fallback>CT</Avatar.Fallback>
+						<Avatar.Image
+							alt={displayName}
+							src={photoURL}
+							className="w-10 rounded-full"
+						/>
+						<Avatar.Fallback>{displayName}</Avatar.Fallback>
 					</Avatar.Root>
 				</DropdownMenu.Trigger>
 
@@ -60,7 +68,7 @@ const MenuMobile = ({
 							<SignInButton isMenuButton />
 						</DropdownMenu.Item>
 
-						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
+						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2 hover:text-red-600">
 							<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>

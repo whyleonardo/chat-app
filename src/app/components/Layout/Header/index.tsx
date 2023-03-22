@@ -65,11 +65,11 @@ const MenuMobile = ({
 				<DropdownMenu.Portal>
 					<DropdownMenu.Content>
 						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
-							<SignInButton isMenuButton />
+							<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
 						</DropdownMenu.Item>
 
-						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2 hover:text-red-600">
-							<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
+						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
+							<SignInButton isMenuButton />
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>
 				</DropdownMenu.Portal>

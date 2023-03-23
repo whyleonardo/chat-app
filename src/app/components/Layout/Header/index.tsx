@@ -17,7 +17,7 @@ export const Header = () => {
 	const photoURL = currentUser?.photoURL || undefined
 
 	return (
-		<header className="flex justify-between items-center px-8 sm:12 py-2 h-14 w-full shadow-sm border-b border-b-brand-900/10 dark:border-b-brand-100/10">
+		<header className="flex justify-between items-center px-8 sm:12 py-2 h-14 w-full shadow-sm border-b border-b-brand-900/10 dark:border-b-brand-100/10 sticky">
 			<span className="flex items-center font-bold text-lg hover:scale-[1.05] transition duration-300 cursor-pointer">
 				ChatApp <Chat className="text-brand-300" weight="duotone" size={32} />
 			</span>

@@ -1,4 +1,4 @@
-import { db } from './app'
+import { db } from '../../app'
 
 import { collection } from 'firebase/firestore'
 

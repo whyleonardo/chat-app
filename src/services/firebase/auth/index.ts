@@ -1,5 +1,5 @@
-import { auth } from './app'
-import { usersCollectionRef } from './firestore'
+import { auth } from '../app'
+import { usersCollectionRef } from '../firestore/collections'
 
 import {
 	browserLocalPersistence,

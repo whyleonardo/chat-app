@@ -1,5 +1,7 @@
 'use client'
 
+import { useTheme } from 'next-themes'
+
 import { Button } from '@/app/components/Button/Shared/Button'
 import { SignInButton } from 'components/Button/SignInButton'
 import { ToggleThemeButton } from 'components/Button/ToggleThemeButton'
@@ -10,8 +12,7 @@ import * as Avatar from '@radix-ui/react-avatar'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 export const Header = () => {
-	const { currentUser } = useAuth()
-	const isLoadingUser = false
+	const { currentUser, isLoadingUser } = useAuth()
 
 	const displayName = currentUser?.displayName || undefined
 	const photoURL = currentUser?.photoURL || undefined
@@ -24,32 +25,30 @@ export const Header = () => {
 			{isLoadingUser ? (
 				<Spinner />
 			) : (
-				<MenuMobile displayName={displayName} photoURL={photoURL} />
+				<Menu displayName={displayName} photoURL={photoURL} />
 			)}
 		</header>
 	)
 }
 
-const MenuMobile = ({
+const Menu = ({
 	displayName,
 	photoURL
 }: {
 	displayName: string | undefined
 	photoURL: string | undefined
 }) => {
+	const { setTheme } = useTheme()
 	return (
 		<div className="relative ">
 			<DropdownMenu.Root>
-				<DropdownMenu.Trigger
-					className="border-black radix-state-open:border-2"
-					asChild
-				>
+				<DropdownMenu.Trigger asChild>
 					<Button>
 						<Avatar.Root>
 							<Avatar.Image
 								alt={displayName}
 								src={photoURL}
-								className="rounded-full w-10 h-10"
+								className="rounded-full w-10 h-10 hover:scale-[1.03] transition duration-150"
 							/>
 							<Avatar.Fallback>{displayName}</Avatar.Fallback>
 						</Avatar.Root>
@@ -60,13 +59,15 @@ const MenuMobile = ({
 					<DropdownMenu.Content
 						align="end"
 						sideOffset={5}
-						className="radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
+						className="bg-slate-500 shadow-md font-light text-sm rounded-lg radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
 					>
-						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
-							<ToggleThemeButton title="ToggleTheme" isText isMenuButton />
+						<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
+							<ToggleThemeButton isText title="Toggle Theme" isMenuButton />
 						</DropdownMenu.Item>
 
-						<DropdownMenu.Item className="bg-blue-500 px-4 py-2 rounded-sm space-y-2">
+						<DropdownMenu.Separator className=" bg-white/20 w-full h-[1px]" />
+
+						<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
 							<SignInButton isMenuButton />
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>

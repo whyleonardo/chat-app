@@ -11,10 +11,9 @@ export default function DashboardLayout({
 		<div className="flex flex-col space-y-2">
 			<Header />
 
-			<div className="flex space-x-2">
-				<div className="border w-72 border-blue-500">
-					<Sidebar />
-				</div>
+			<div className="flex gap-2">
+				<Sidebar />
+
 				<div className="border border-green-500 w-full">{children}</div>
 			</div>
 		</div>

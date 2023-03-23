@@ -8,12 +8,10 @@ export default function DashboardLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<div className="border flex flex-col">
-			<div className="flex justify-end px-8 py-2 border border-red-500">
-				<Header />
-			</div>
+		<div className="flex flex-col space-y-2">
+			<Header />
 
-			<div className="flex">
+			<div className="flex space-x-2">
 				<div className="border w-72 border-blue-500">
 					<Sidebar />
 				</div>

@@ -13,6 +13,11 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['var(--font-inter)']
+			},
+			colors: {
+				brand: {
+					900: '#111827'
+				}
 			}
 		}
 	},

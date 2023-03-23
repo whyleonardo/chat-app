@@ -1,4 +1,4 @@
-import { usersCollectionRef } from '@/services/firebase/firestore'
+import { usersCollectionRef } from '@/services/firebase/firestore/collections'
 import { useQuery } from '@tanstack/react-query'
 import { getDocs, query } from 'firebase/firestore'
 

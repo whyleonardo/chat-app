@@ -10,7 +10,11 @@ module.exports = {
 		'./src/**/*.{js,ts,jsx,tsx}'
 	],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				sans: ['var(--font-inter)']
+			}
+		}
 	},
-	plugins: []
+	plugins: [require('tailwindcss-radix')]
 }

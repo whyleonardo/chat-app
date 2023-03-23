@@ -1,11 +1,13 @@
 'use client'
 
 import '../styles/tailwind/styles.css'
-
 import { ThemeProvider } from 'next-themes'
+import { Inter } from 'next/font/google'
 
 import { AuthProvider } from '@/providers/AuthProvider'
 import { QueryProvider } from '@/providers/QueryProvider'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export default function RootLayout({
 	children
@@ -15,7 +17,7 @@ export default function RootLayout({
 	return (
 		<html>
 			<head />
-			<body>
+			<body className={`${inter.variable} font-sans`}>
 				<AuthProvider>
 					<ThemeProvider>
 						<QueryProvider>{children}</QueryProvider>

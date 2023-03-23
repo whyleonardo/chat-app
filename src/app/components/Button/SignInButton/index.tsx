@@ -9,9 +9,9 @@ export const SignInButton = ({ isMenuButton }: { isMenuButton?: boolean }) => {
 	return (
 		<button
 			className={clsx(
-				'text-black dark:text-white transition duration-150',
+				' transition duration-150',
 				isMenuButton
-					? 'hover:text-white/50 dark:hover:text-white/50'
+					? 'hover:text-brand-600 dark:hover:text-brand-300'
 					: 'hover:text-black/50 dark:hover:text-white/50'
 			)}
 			onClick={!currentUser ? login : logout}

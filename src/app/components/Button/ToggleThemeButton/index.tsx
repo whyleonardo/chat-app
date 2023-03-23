@@ -38,9 +38,9 @@ export const ToggleThemeButton = ({
 	return (
 		<button
 			className={clsx(
-				'text-black dark:text-white transition duration-150',
+				' transition duration-150',
 				isMenuButton
-					? 'hover:text-white/50 dark:hover:text-white/50'
+					? 'hover:text-brand-600 dark:hover:text-brand-300'
 					: 'dark:hover:text-yellow-500 hover:text-yellow-500'
 			)}
 			onClick={handleChangeTheme}

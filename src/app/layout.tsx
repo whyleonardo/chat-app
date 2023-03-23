@@ -17,7 +17,9 @@ export default function RootLayout({
 	return (
 		<html>
 			<head />
-			<body className={`${inter.variable} font-sans dark:bg-brand-900`}>
+			<body
+				className={`${inter.variable} font-sans bg-brand-100 dark:bg-brand-900 text-brand-900 dark:text-brand-100`}
+			>
 				<AuthProvider>
 					<ThemeProvider>
 						<QueryProvider>{children}</QueryProvider>

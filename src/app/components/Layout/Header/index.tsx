@@ -57,13 +57,13 @@ const Menu = ({
 				<DropdownMenu.Content
 					align="end"
 					sideOffset={5}
-					className="bg-brand-200 dark:bg-brand-800 shadow-md px-2 font-light text-sm rounded-lg radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
+					className="bg-brand-200 dark:bg-brand-700 shadow-md px-2 font-light text-sm rounded-lg radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
 				>
 					<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
 						<ToggleThemeButton isText title="Toggle Theme" isMenuButton />
 					</DropdownMenu.Item>
 
-					<DropdownMenu.Separator className="bg-brand-600/10 w-full h-[1px]" />
+					<DropdownMenu.Separator className="bg-brand-500/20 w-full h-[1px]" />
 
 					<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
 						<SignInButton isMenuButton />

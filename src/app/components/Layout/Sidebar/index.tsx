@@ -8,8 +8,6 @@ import { createRoom } from '@/services/firebase/firestore/createRoom'
 import { Plus, X as XIcon } from '@phosphor-icons/react'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export const revamp = true
-
 export const Sidebar = () => {
 	const { data, isLoading } = useRooms()
 	const { currentUser } = useAuth()

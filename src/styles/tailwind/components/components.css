@@ -1,0 +1,15 @@
+@tailwind components;
+
+
+/* BUTTON */
+@layer components {
+	.btn {
+		@apply hover:text-brand-600 dark:hover:text-brand-200 transition duration-150;
+	}
+
+	.btn.btn-menu {
+		@apply hover:text-brand-600 dark:hover:text-brand-300
+	}
+
+}
+

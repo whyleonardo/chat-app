@@ -36,6 +36,7 @@
     "@whyleonardo/eslint-config": "^1.7.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
+    "prettier-plugin-tailwindcss": "^0.2.5",
     "tailwindcss": "^3.2.7"
   }
 }

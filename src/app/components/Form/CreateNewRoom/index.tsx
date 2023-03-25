@@ -68,7 +68,7 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 				/>
 			</fieldset>
 
-			<div className="mt-[25px] flex justify-end">
+			<div className="flex mt-6 justify-end">
 				<Trigger asChild>
 					<button
 						onClick={handleSubmit}

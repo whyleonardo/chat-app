@@ -17,7 +17,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentUser, setCurrentUser] = useState<User | null>()
-	const [isLoadingUser, setIsLoadingUser] = useState(false)
+	const [isLoadingUser, setIsLoadingUser] = useState(true)
 
 	const router = useRouter()
 
@@ -30,25 +30,27 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	}
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (current) => {
-			if (current) {
-				setCurrentUser(current)
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setIsLoadingUser(true)
+			if (user) {
+				setCurrentUser(user)
 				router.push('/dashboard')
 			} else {
-				setCurrentUser(current)
+				setCurrentUser(null)
 				router.push('/')
 			}
+			setIsLoadingUser(false)
 		})
-	})
+
+		return () => unsubscribe()
+	}, [])
 
 	useEffect(() => {
-		new Promise((resolve) => {
-			resolve(setIsLoadingUser(true))
-		}).then(() => {
-			setTimeout(() => {
-				setIsLoadingUser(false)
-			}, 2000)
-		})
+		if (currentUser) {
+			router.push('/dashboard')
+		} else {
+			router.push('/')
+		}
 	}, [currentUser])
 
 	const values = {

@@ -8,13 +8,13 @@ export default function DashboardLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<div className="flex flex-col space-y-2 relative h-screen">
+		<div className="relative flex h-screen flex-col space-y-2">
 			<Header />
 
-			<div className="flex gap-2 h-screen">
+			<div className="flex h-screen gap-2">
 				<Sidebar />
 
-				<div className="border border-green-500 w-full">{children}</div>
+				<div className="w-full border border-green-500">{children}</div>
 			</div>
 		</div>
 	)

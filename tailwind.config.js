@@ -33,5 +33,8 @@ module.exports = {
 			}
 		}
 	},
-	plugins: [require('tailwindcss-radix')]
+	plugins: [
+		require('tailwindcss-radix'),
+		require('prettier-plugin-tailwindcss')
+	]
 }

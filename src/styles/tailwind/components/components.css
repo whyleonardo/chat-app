@@ -13,3 +13,17 @@
 
 }
 
+@layer components {
+	.vstack {
+		@apply flex flex-col;
+	}
+
+	.hstack {
+		@apply flex flex-row;
+	}
+
+	.center {
+		@apply h-full items-center justify-center;
+	}
+}
+

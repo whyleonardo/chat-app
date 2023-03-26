@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/app/components/Button/Shared/Button'
 import { SignInButton } from 'components/Button/SignInButton'
 import { ToggleThemeButton } from 'components/Button/ToggleThemeButton'
 import { Spinner } from 'components/Others/Spinner'
@@ -17,8 +16,8 @@ export const Header = () => {
 	const photoURL = currentUser?.photoURL || undefined
 
 	return (
-		<header className="flex justify-between items-center px-8 sm:12 py-2 h-14 w-full shadow-sm border-b border-b-brand-900/10 dark:border-b-brand-100/10 sticky">
-			<span className="flex items-center font-bold text-lg hover:scale-[1.05] transition duration-300 cursor-pointer">
+		<header className="sm:12 sticky flex h-14 w-full items-center justify-between border-b border-b-brand-900/10 px-8 py-2 shadow-sm dark:border-b-brand-100/10">
+			<span className="flex cursor-pointer items-center text-lg font-bold transition duration-300 hover:scale-[1.05]">
 				ChatApp <Chat className="text-brand-300" weight="duotone" size={32} />
 			</span>
 
@@ -45,9 +44,9 @@ const Menu = ({
 					<Avatar.Image
 						alt={displayName}
 						src={photoURL}
-						className="rounded-full w-10 h-10 hover:scale-[1.03] transition duration-150"
+						className="h-10 w-10 rounded-full transition duration-150 hover:scale-[1.03]"
 					/>
-					<Avatar.Fallback className="flex items-center gap-2 cursor-pointer btn">
+					<Avatar.Fallback className="btn flex cursor-pointer items-center gap-2">
 						{displayName}
 						<CaretDown
 							className="text-brand-300 dark:text-brand-600"
@@ -62,15 +61,15 @@ const Menu = ({
 				<DropdownMenu.Content
 					align="end"
 					sideOffset={5}
-					className="bg-brand-200 dark:bg-brand-700 shadow-md px-2 font-light text-sm rounded-lg radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
+					className="radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down rounded-lg bg-brand-200 px-2 text-sm font-light shadow-md dark:bg-brand-700"
 				>
-					<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
+					<DropdownMenu.Item className=" space-y-2 px-4 py-2 focus:outline-none">
 						<ToggleThemeButton isText title="Toggle Theme" isMenuButton />
 					</DropdownMenu.Item>
 
-					<DropdownMenu.Separator className="bg-brand-500/20 w-full h-[1px]" />
+					<DropdownMenu.Separator className="h-[1px] w-full bg-brand-500/20" />
 
-					<DropdownMenu.Item className=" px-4 py-2 space-y-2 focus:outline-none">
+					<DropdownMenu.Item className=" space-y-2 px-4 py-2 focus:outline-none">
 						<SignInButton isMenuButton />
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>

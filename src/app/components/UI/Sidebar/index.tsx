@@ -17,8 +17,8 @@ export const Sidebar = () => {
 
 	return (
 		<>
-			<div className="w-72 hidden sm:flex sm:flex-col px-2">
-				<header className="flex border-b border-b-brand-500/30 shadow-sm w-full h-14 justify-end items-center">
+			<div className="hidden w-72 px-2 sm:flex sm:flex-col">
+				<header className="flex h-14 w-full items-center justify-end border-b border-b-brand-500/30 shadow-sm">
 					<Dialog.Root>
 						<Dialog.Trigger asChild>
 							<button className="btn hover:scale-110">
@@ -27,16 +27,16 @@ export const Sidebar = () => {
 						</Dialog.Trigger>
 
 						<Dialog.Portal>
-							<Dialog.Overlay className=" bg-black/90 data-[state=open]:animate-overlayShow fixed inset-0" />
-							<Dialog.Content className="fixed justify-start dark:bg-brand-700 shadow-md bg-brand-100 p-4 translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] rounded-lg">
+							<Dialog.Overlay className=" data-[state=open]:animate-overlayShow fixed inset-0 bg-black/90" />
+							<Dialog.Content className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] justify-start rounded-lg bg-brand-100 p-4 shadow-md dark:bg-brand-700">
 								<div className="flex items-center justify-between">
-									<Dialog.Title className="font-bold text-lg ">
+									<Dialog.Title className="text-lg font-bold ">
 										New Room
 									</Dialog.Title>
 
 									<Dialog.Close asChild>
 										<button
-											className="btn hover:scale-110 transition duration-150"
+											className="btn transition duration-150 hover:scale-110"
 											aria-label="Close"
 										>
 											<XIcon weight="bold" size={18} />
@@ -44,7 +44,7 @@ export const Sidebar = () => {
 									</Dialog.Close>
 								</div>
 
-								<Dialog.Description className="opacity-70 mt-[10px] mb-5 text-[15px] leading-normal">
+								<Dialog.Description className="mt-[10px] mb-5 text-[15px] leading-normal opacity-70">
 									Choose a name for your new room and start chatting.
 								</Dialog.Description>
 
@@ -54,9 +54,9 @@ export const Sidebar = () => {
 					</Dialog.Root>
 				</header>
 
-				<main className="flex flex-col relative py-4 gap-4 h-full">
+				<main className="relative flex h-full flex-col gap-4 py-4">
 					{isLoading && (
-						<div className="absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
+						<div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
 							<Spinner />
 						</div>
 					)}
@@ -68,12 +68,12 @@ export const Sidebar = () => {
 									<strong>{room.name}</strong>
 								</div>
 
-								<div className="w-full h-[1px] bg-brand-500/30 last:hidden" />
+								<div className="h-[1px] w-full bg-brand-500/30 last:hidden" />
 							</>
 						))}
 
 					{data && data.length === 0 && (
-						<p className="absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%]">
+						<p className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
 							VAZIO
 						</p>
 					)}
@@ -102,13 +102,13 @@ const SucessToast = ({ open, setOpen }: ToastProps) => {
 				open={open}
 				onOpenChange={setOpen}
 				className={clsx(
-					'z-50 fixed bottom-4 inset-x-4 w-auto md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm shadow-lg rounded-lg',
+					'fixed inset-x-4 bottom-4 z-50 w-auto rounded-lg shadow-lg md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm',
 					'bg-brand-200 dark:bg-brand-800'
 				)}
 			>
 				<div className="flex">
-					<div className="w-0 flex-1 flex items-center pl-5 py-4">
-						<div className="w-full radix">
+					<div className="flex w-0 flex-1 items-center py-4 pl-5">
+						<div className="radix w-full">
 							<Toast.Title className="flex items-center gap-2 text-sm font-medium text-brand-900 dark:text-brand-100">
 								Room is Created
 								<CheckCircle
@@ -123,9 +123,9 @@ const SucessToast = ({ open, setOpen }: ToastProps) => {
 						</div>
 					</div>
 					<div className="flex">
-						<div className="flex flex-col px-3 py-2 space-y-1">
-							<div className="h-full flex items-center ">
-								<Toast.Close className="w-full border border-transparent rounded-lg h-10 px-3 py-2 flex items-center justify-center text-sm font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-300/60 dark:hover:bg-brand-700 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-brand-500 focus-visible:ring-opacity-75 transition duration-150">
+						<div className="flex flex-col space-y-1 px-3 py-2">
+							<div className="flex h-full items-center ">
+								<Toast.Close className="flex h-10 w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-brand-600 transition duration-150 hover:bg-brand-300/60 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-brand-500 focus-visible:ring-opacity-75 dark:text-brand-400 dark:hover:bg-brand-700">
 									Close
 								</Toast.Close>
 							</div>

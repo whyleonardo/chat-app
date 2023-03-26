@@ -56,11 +56,11 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 	return (
 		<>
 			<fieldset className="flex items-center gap-5">
-				<label className=" text-right text-md font-bold" htmlFor="name">
+				<label className=" text-md text-right font-bold" htmlFor="name">
 					Name
 				</label>
 				<input
-					className="text-brand-100 focus:shadow-md inline-flex h-[35px] bg-brand-900 w-3/4 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none "
+					className="inline-flex h-[35px] w-3/4 items-center justify-center rounded-[4px] bg-brand-900 px-[10px] text-[15px] leading-none text-brand-100 shadow-[0_0_0_1px] outline-none focus:shadow-md "
 					id="name"
 					placeholder="Room name"
 					onChange={handleRoomNameChange}
@@ -68,12 +68,12 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 				/>
 			</fieldset>
 
-			<div className="flex mt-6 justify-end">
+			<div className="mt-6 flex justify-end">
 				<Trigger asChild>
 					<button
 						onClick={handleSubmit}
 						disabled={roomName.length === 0}
-						className="text-brand-100 flex items-center gap-2 rounded-lg p-3 bg-brand-900 hover:bg-brand-800 shadow-md transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+						className="flex items-center gap-2 rounded-lg bg-brand-900 p-3 text-brand-100 shadow-md transition duration-150 hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
 					>
 						Create Room
 						<Plus weight="bold" size={18} />

@@ -2,14 +2,11 @@
 /** @type {import('tailwindcss').Config} */
 
 const { fontFamily } = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
 	darkMode: ['class', '[data-theme="dark"]'],
 	content: [
-		// './app/**/*.{js,ts,jsx,tsx}',
-		// './pages/**/*.{js,ts,jsx,tsx}',
-		// './components/**/*.{js,ts,jsx,tsx}',
-
 		// Or if using `src` directory:
 		'./src/**/*.{js,ts,jsx,tsx}'
 	],
@@ -35,6 +32,23 @@ module.exports = {
 	},
 	plugins: [
 		require('tailwindcss-radix'),
-		require('prettier-plugin-tailwindcss')
+		require('prettier-plugin-tailwindcss'),
+		plugin(({ addComponents }) => {
+			addComponents({
+				'.h-stack': {
+					display: 'flex',
+					flexDirection: 'row'
+				},
+				'.v-stack': {
+					display: 'flex',
+					flexDirection: 'column'
+				},
+				'.center': {
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: '100%'
+				}
+			})
+		})
 	]
 }

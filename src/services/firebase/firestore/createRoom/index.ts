@@ -1,6 +1,5 @@
 import { roomsCollectionRef } from '../collections'
 
-import { db } from '@/services/firebase/app'
 import {
 	collection,
 	addDoc,
@@ -27,6 +26,10 @@ export async function createRoom(
 	}
 
 	const roomDocRef = await addDoc(roomsCollectionRef, newRoom)
+
+	await updateDoc(roomDocRef, {
+		roomId: roomDocRef.id
+	})
 
 	const messagesRef = collection(roomDocRef, 'messages')
 

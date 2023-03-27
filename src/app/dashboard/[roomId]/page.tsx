@@ -1,8 +1,7 @@
-export default function RoomPage({ params }: { params: { roomId: string } }) {
-	console.log(params)
+export default function RoomPage() {
 	return (
 		<div>
-			<p> {params.roomId} </p>
+			<p> Hello World </p>
 		</div>
 	)
 }

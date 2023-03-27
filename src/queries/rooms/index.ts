@@ -7,6 +7,7 @@ import {
 	DocumentData,
 	getDoc,
 	getDocs,
+	orderBy,
 	query,
 	where
 } from 'firebase/firestore'
@@ -31,20 +32,26 @@ export const useRooms = () => {
 }
 
 export const useRoom = (roomId: string) => {
-	return useQuery(['room'], async () => {
-		const docRef = doc(roomsCollectionRef, roomId)
+	console.log('rodou')
+	return useQuery(
+		['room'],
+		async () => {
+			const docRef = doc(roomsCollectionRef, roomId)
 
-		const docSnap = await getDoc(docRef)
+			const docSnap = await getDoc(docRef)
 
-		const messagesRef = collection(docRef, 'messages')
-		const messagesSnapshot = await getDocs(messagesRef)
+			const messagesRef = collection(docRef, 'messages')
+			const q = query(messagesRef, orderBy('timestamp', 'asc'))
+			const messagesSnapshot = await getDocs(q)
 
-		const messages = messagesSnapshot.docs.map((doc) => doc.data())
+			const messages = messagesSnapshot.docs.map((doc) => doc.data())
 
-		if (docSnap.exists()) {
-			const data = docSnap.data()
-			const room: DocumentData = { ...data, messages }
-			return room
-		}
-	})
+			if (docSnap.exists()) {
+				const data = docSnap.data()
+				const room: DocumentData = { ...data, messages }
+				return room
+			}
+		},
+		{ enabled: false }
+	)
 }

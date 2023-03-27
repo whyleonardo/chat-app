@@ -14,7 +14,7 @@ export default function DashboardLayout({
 			<div className="flex h-screen gap-2">
 				<Sidebar />
 
-				<div className="w-full border border-green-500">{children}</div>
+				{children}
 			</div>
 		</div>
 	)

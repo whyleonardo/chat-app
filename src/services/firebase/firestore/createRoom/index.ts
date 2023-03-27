@@ -5,6 +5,7 @@ import {
 	collection,
 	addDoc,
 	doc,
+	getDoc,
 	setDoc,
 	updateDoc,
 	arrayUnion,
@@ -31,7 +32,7 @@ export async function createRoom(
 
 	await addDoc(messagesRef, {
 		text: 'Bem-vindo à sala!',
-		createdAt: serverTimestamp(),
+		timestamp: serverTimestamp(),
 		sender: 'Server'
 	})
 

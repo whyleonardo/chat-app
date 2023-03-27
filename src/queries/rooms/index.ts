@@ -1,7 +1,15 @@
 import { auth } from '@/services/firebase/app'
 import { roomsCollectionRef } from '@/services/firebase/firestore/collections'
 import { useQuery } from '@tanstack/react-query'
-import { getDocs, query, where } from 'firebase/firestore'
+import {
+	collection,
+	doc,
+	DocumentData,
+	getDoc,
+	getDocs,
+	query,
+	where
+} from 'firebase/firestore'
 
 export const useRooms = () => {
 	return useQuery(['rooms'], async () => {
@@ -11,8 +19,7 @@ export const useRooms = () => {
 		)
 
 		const snapshot = await getDocs(q)
-		// TODO - Refactor this to use a Room type
-		const rooms: Array<any> = []
+		const rooms: Array<DocumentData> = []
 		snapshot.docs.map((doc) => {
 			const room = doc.data()
 			room.id = doc.id
@@ -20,5 +27,24 @@ export const useRooms = () => {
 		})
 
 		return rooms
+	})
+}
+
+export const useRoom = (roomId: string) => {
+	return useQuery(['room'], async () => {
+		const docRef = doc(roomsCollectionRef, roomId)
+
+		const docSnap = await getDoc(docRef)
+
+		const messagesRef = collection(docRef, 'messages')
+		const messagesSnapshot = await getDocs(messagesRef)
+
+		const messages = messagesSnapshot.docs.map((doc) => doc.data())
+
+		if (docSnap.exists()) {
+			const data = docSnap.data()
+			const room: DocumentData = { ...data, messages }
+			return room
+		}
 	})
 }

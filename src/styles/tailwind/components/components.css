@@ -4,7 +4,7 @@
 /* BUTTON */
 @layer components {
 	.btn {
-		@apply hover:text-brand-600 dark:hover:text-brand-200 transition duration-150;
+		@apply hover:text-brand-600 dark:hover:text-brand-200 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
 	}
 
 	.btn.btn-menu {

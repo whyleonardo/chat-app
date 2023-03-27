@@ -10,7 +10,7 @@ import { QueryProvider } from '@/providers/QueryProvider'
 const inter = Inter({
 	subsets: ['latin'],
 	variable: '--font-inter',
-	fallback: ['system-ui']
+	fallback: ['system-ui', 'sans-serif']
 })
 
 export default function RootLayout({

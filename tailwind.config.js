@@ -32,6 +32,9 @@ module.exports = {
 	},
 	plugins: [
 		require('tailwindcss-radix'),
+		require('tailwind-scrollbar')({ nocompatible: true }),
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/forms'),
 		require('prettier-plugin-tailwindcss'),
 		plugin(({ addComponents }) => {
 			addComponents({

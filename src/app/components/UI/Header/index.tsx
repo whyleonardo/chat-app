@@ -2,10 +2,11 @@
 
 import { SignInButton } from 'components/Button/SignInButton'
 import { ToggleThemeButton } from 'components/Button/ToggleThemeButton'
+import { Logo } from 'components/Others/Logo'
 import { Spinner } from 'components/Others/Spinner'
 
 import { useAuth } from '@/providers/AuthProvider'
-import { Chat, CaretDown } from '@phosphor-icons/react'
+import { CaretDown } from '@phosphor-icons/react'
 import * as Avatar from '@radix-ui/react-avatar'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
@@ -17,9 +18,7 @@ export const Header = () => {
 
 	return (
 		<header className="sm:12 sticky flex h-14 w-full items-center justify-between border-b border-b-brand-900/10 px-8 py-2 shadow-sm dark:border-b-brand-100/10">
-			<span className="flex cursor-pointer items-center text-lg font-bold transition duration-300 hover:scale-[1.05]">
-				ChatApp <Chat className="text-brand-300" weight="duotone" size={32} />
-			</span>
+			<Logo />
 
 			{isLoadingUser ? (
 				<Spinner />

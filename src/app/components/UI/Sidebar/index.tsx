@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 import { CreateNewRoom } from 'components/Form/CreateNewRoom'
@@ -14,6 +16,8 @@ import { clsx } from 'clsx'
 export const Sidebar = () => {
 	const { data, isLoading } = useRooms()
 	const [open, setOpen] = useState(false)
+
+	const pathname = usePathname()
 
 	return (
 		<>
@@ -64,8 +68,16 @@ export const Sidebar = () => {
 					{data &&
 						data.map((room) => (
 							<>
-								<div className="w-full" key={room.id}>
-									<strong>{room.name}</strong>
+								<div
+									className={clsx(
+										'w-full',
+										pathname?.includes(room.id) && 'rounded-lg bg-brand-500 p-4'
+									)}
+									key={room.id}
+								>
+									<Link href={`/dashboard/${room.id}`} className="btn">
+										{room.name}
+									</Link>
 								</div>
 
 								<div className="h-[1px] w-full bg-brand-500/30 last:hidden" />

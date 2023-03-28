@@ -73,7 +73,7 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 					<button
 						onClick={handleSubmit}
 						disabled={roomName.length === 0}
-						className="flex items-center gap-2 rounded-lg bg-brand-900 p-3 text-brand-100 shadow-md transition duration-150 hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+						className="flex items-center gap-2 rounded-lg bg-brand-900 p-3 text-brand-100 shadow-md transition duration-150 disabled:cursor-not-allowed disabled:opacity-50 hover:bg-brand-800"
 					>
 						Create Room
 						<Plus weight="bold" size={18} />

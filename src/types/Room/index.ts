@@ -6,9 +6,10 @@ export type Room = {
 	roomId: string
 	members: string[]
 	name: string
-	messages: Array<{
-		text: string
-		timestamp: string
-		sender: string
-	}>
+}
+
+export type Message = {
+	text: string
+	timestamp: string
+	sender: string
 }

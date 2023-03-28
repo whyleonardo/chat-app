@@ -41,24 +41,20 @@ export default function RoomLayout({
 	}, [messages])
 
 	useEffect(() => {
-		async function fetchMessages() {
-			const docRef = doc(roomsCollectionRef, params.roomId)
+		const docRef = doc(roomsCollectionRef, params.roomId)
 
-			const messagesRef = collection(docRef, 'messages')
-			const q = query(messagesRef, orderBy('timestamp', 'asc'))
+		const messagesRef = collection(docRef, 'messages')
+		const q = query(messagesRef, orderBy('timestamp', 'asc'))
 
-			const unsubscribe = onSnapshot(q, (snapshot) => {
-				const newMessages = [] as DocumentData[]
-				snapshot.forEach((doc) => {
-					newMessages.push(doc.data())
-				})
-				setMessages(newMessages)
-			})
-			return unsubscribe
-		}
+		const unsubscribe = onSnapshot(q, (snapshot) => {
+			const newMessages = snapshot.docs.map((doc) => doc.data())
+			setMessages(newMessages)
+		})
 
-		fetchMessages()
-	}, [params.roomId])
+		console.log('olá')
+
+		return () => unsubscribe()
+	}, [])
 
 	return (
 		<div className="v-stack w-full justify-between space-y-2 border-l md:py-2">

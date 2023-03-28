@@ -34,7 +34,7 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 	async function handleSubmit() {
 		try {
 			const validatedDate = await mySchema.parseAsync({ roomName: roomName })
-			createRoom(roomName, userUid, displayName)
+			validatedDate && createRoom(roomName, userUid, displayName)
 
 			if (open) {
 				setOpen(false)

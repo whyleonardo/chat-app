@@ -14,8 +14,6 @@ export const useRooms = () => {
 			users.push(users)
 		})
 
-		// const isParticipant = snapshot.docs.map((doc) => doc.exists())
-
 		return users
 	})
 }

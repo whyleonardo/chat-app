@@ -98,9 +98,9 @@ export const Sidebar = () => {
 	)
 }
 
-const MenuMobile = () => {
-	// return <div className="sm:hidden absolute bottom-5 right-5">Menuzinho</div>
-}
+// const MenuMobile = () => {
+// 	// return <div className="sm:hidden absolute bottom-5 right-5">Menuzinho</div>
+// }
 
 interface ToastProps {
 	open: boolean
@@ -137,7 +137,7 @@ const SucessToast = ({ open, setOpen }: ToastProps) => {
 					<div className="flex">
 						<div className="flex flex-col space-y-1 px-3 py-2">
 							<div className="flex h-full items-center ">
-								<Toast.Close className="flex h-10 w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-brand-600 transition duration-150 hover:bg-brand-300/60 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-brand-500 focus-visible:ring-opacity-75 dark:text-brand-400 dark:hover:bg-brand-700">
+								<Toast.Close className="flex h-10 w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-brand-600 transition duration-150 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-brand-500 focus-visible:ring-opacity-75 hover:bg-brand-300/60 dark:text-brand-400 dark:hover:bg-brand-700">
 									Close
 								</Toast.Close>
 							</div>

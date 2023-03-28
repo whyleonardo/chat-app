@@ -17,14 +17,15 @@ export const signIn = async () => {
 			await signInWithPopup(auth, provider)
 				.then((result) => {
 					const credential = GoogleAuthProvider.credentialFromResult(result)
+					credential && console.log('Sucess!')
 					// const token = credential?.accessToken
 					// const user = result.user
 				})
 				.catch((error) => {
-					// const errorCode = error.code
-					// const errorMessage = error.message
-					// const email = error.email
-					// const credential = GoogleAuthProvider.credentialFromError(error)
+					const errorCode = error.code
+					const errorMessage = error.message
+
+					console.error(errorCode, errorMessage)
 				})
 
 			const q = query(

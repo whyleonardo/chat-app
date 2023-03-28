@@ -3,11 +3,7 @@ import { roomsCollectionRef } from '../collections'
 import {
 	collection,
 	addDoc,
-	doc,
-	getDoc,
-	setDoc,
 	updateDoc,
-	arrayUnion,
 	serverTimestamp
 } from 'firebase/firestore'
 

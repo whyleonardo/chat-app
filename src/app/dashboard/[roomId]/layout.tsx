@@ -3,11 +3,21 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 
 import { SendMessage } from 'components/Form/SendMessage'
+import { Spinner } from 'components/Others/Spinner'
 
 import { useAuth } from '@/providers/AuthProvider'
 import { useRoom } from '@/queries/rooms'
-import { Room } from '@/types/Room'
+import { roomsCollectionRef } from '@/services/firebase/firestore/collections'
+import { Message, Room } from '@/types/Room'
 import clsx from 'clsx'
+import {
+	collection,
+	doc,
+	DocumentData,
+	onSnapshot,
+	orderBy,
+	query
+} from 'firebase/firestore'
 
 export default function RoomLayout({
 	children,
@@ -16,9 +26,9 @@ export default function RoomLayout({
 	children: ReactNode
 	params: { roomId: string }
 }) {
-	const [text, setText] = useState('')
+	const [messages, setMessages] = useState<Message[] | DocumentData>([])
 	const messagesEndRef = useRef<HTMLDivElement>(null)
-	const { data, refetch } = useRoom(params.roomId)
+	const { data, refetch, isLoading } = useRoom(params.roomId)
 
 	const { currentUser } = useAuth()
 
@@ -28,13 +38,36 @@ export default function RoomLayout({
 		setTimeout(() => {
 			messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
 		}, 1)
-	}, [room?.messages])
+	}, [messages])
+
+	useEffect(() => {
+		async function fetchMessages() {
+			const docRef = doc(roomsCollectionRef, params.roomId)
+
+			const messagesRef = collection(docRef, 'messages')
+			const q = query(messagesRef, orderBy('timestamp', 'asc'))
+
+			const unsubscribe = onSnapshot(q, (snapshot) => {
+				const newMessages = [] as DocumentData[]
+				snapshot.forEach((doc) => {
+					newMessages.push(doc.data())
+				})
+				setMessages(newMessages)
+			})
+			return unsubscribe
+		}
+
+		fetchMessages()
+	}, [params.roomId])
 
 	return (
 		<div className="v-stack w-full justify-between space-y-2 border-l md:py-2">
 			<div className="v-stack h-[80vh] w-full space-y-2 overflow-y-scroll px-8 py-2 pt-8 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-brand-600 scrollbar-thumb-rounded-lg">
-				{room &&
-					room.messages.map((message) => (
+				{isLoading ? (
+					<Spinner />
+				) : (
+					messages &&
+					messages.map((message: Message) => (
 						<div
 							key={message.timestamp}
 							className={clsx(
@@ -46,11 +79,12 @@ export default function RoomLayout({
 						>
 							<span className={clsx('break-words')}>{message.text}</span>
 						</div>
-					))}
+					))
+				)}
 				<div ref={messagesEndRef} />
 			</div>
 
-			<SendMessage roomId={room?.roomId} refetch={refetch} onChange={setText} />
+			<SendMessage roomId={room?.roomId} refetch={refetch} />
 		</div>
 	)
 }

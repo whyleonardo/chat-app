@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 import { useAuth } from '@/providers/AuthProvider'
 import { sendMessage } from '@/services/firebase/firestore/sendMessages'
@@ -9,23 +9,20 @@ import { DocumentData } from 'firebase/firestore'
 
 export const SendMessage = ({
 	roomId,
-	refetch,
-	onChange
+	refetch
 }: {
 	roomId: string
 	refetch: () => Promise<QueryObserverResult<DocumentData | undefined, unknown>>
-	onChange: Dispatch<SetStateAction<string>>
 }) => {
 	const { currentUser } = useAuth()
-
 	const [text, setText] = useState('')
+
 	function handleTextChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setText(e.target.value)
 	}
 
 	function handleSendMessage() {
 		sendMessage(roomId, text, currentUser?.uid)
-		onChange(text)
 		setText('')
 		refetch()
 	}

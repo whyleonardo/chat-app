@@ -40,20 +40,19 @@ export default function RoomLayout({
 		}, 1)
 	}, [messages])
 
+	const docRef = doc(roomsCollectionRef, params.roomId)
+
+	const messagesRef = collection(docRef, 'messages')
+	const q = query(messagesRef, orderBy('timestamp', 'asc'))
+
 	useEffect(() => {
-		const docRef = doc(roomsCollectionRef, params.roomId)
-
-		const messagesRef = collection(docRef, 'messages')
-		const q = query(messagesRef, orderBy('timestamp', 'asc'))
-
-		const unsubscribe = onSnapshot(q, (snapshot) => {
-			const newMessages = snapshot.docs.map((doc) => doc.data())
-			setMessages(newMessages)
-		})
-
-		console.log('olá')
-
-		return () => unsubscribe()
+		setTimeout(() => {
+			const unsubscribe = onSnapshot(q, (snapshot) => {
+				const newMessages = snapshot.docs.map((doc) => doc.data())
+				setMessages(newMessages)
+			})
+			return () => unsubscribe()
+		}, 10)
 	}, [])
 
 	return (

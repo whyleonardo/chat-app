@@ -17,7 +17,7 @@ export const signIn = async () => {
 			await signInWithPopup(auth, provider)
 				.then((result) => {
 					const credential = GoogleAuthProvider.credentialFromResult(result)
-					credential && console.log('Sucess!')
+					credential && console.log('Success!')
 					// const token = credential?.accessToken
 					// const user = result.user
 				})

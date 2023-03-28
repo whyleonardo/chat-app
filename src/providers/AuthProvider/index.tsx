@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		})
 
 		return () => unsubscribe()
-	})
+	}, [])
 
 	useEffect(() => {
 		if (currentUser) {
@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		} else {
 			router.push('/')
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser])
 
 	const values = {

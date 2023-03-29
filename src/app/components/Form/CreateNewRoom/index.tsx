@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import React from 'react'
 
@@ -27,6 +28,8 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 	const displayName = currentUser?.displayName || ''
 	const userUid = currentUser?.uid || ''
 
+	const router = useRouter()
+
 	function handleRoomNameChange(event: React.ChangeEvent<HTMLInputElement>) {
 		setRoomName(event.target.value)
 	}
@@ -34,7 +37,10 @@ export const CreateNewRoom = ({ open, setOpen }: CreateNewRoomProps) => {
 	async function handleSubmit() {
 		try {
 			const validatedDate = await mySchema.parseAsync({ roomName: roomName })
-			validatedDate && createRoom(roomName, userUid, displayName)
+			validatedDate &&
+				createRoom(roomName, userUid, displayName).then((id) => {
+					router.push(`/dashboard/${id}`)
+				})
 
 			if (open) {
 				setOpen(false)

@@ -29,10 +29,21 @@ export async function createRoom(
 
 	const messagesRef = collection(roomDocRef, 'messages')
 
-	await addDoc(messagesRef, {
-		text: 'Welcome to chat!',
+	const actualDate = new Date()
+	const formattedDate = new Intl.DateTimeFormat('en-US', {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit'
+	}).format(actualDate)
+
+	const serverMessage = await addDoc(messagesRef, {
+		text: `Chat was created in ${formattedDate} by ${creatorName}`,
 		timestamp: serverTimestamp(),
 		sender: 'Server'
+	})
+
+	await updateDoc(serverMessage, {
+		messageId: serverMessage.id
 	})
 
 	return roomDocRef.id

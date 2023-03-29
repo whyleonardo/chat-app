@@ -12,4 +12,5 @@ export type Message = {
 	text: string
 	timestamp: string
 	sender: string
+	messageId: string
 }

@@ -30,7 +30,7 @@ export async function createRoom(
 	const messagesRef = collection(roomDocRef, 'messages')
 
 	await addDoc(messagesRef, {
-		text: 'Bem-vindo à sala!',
+		text: 'Welcome to chat!',
 		timestamp: serverTimestamp(),
 		sender: 'Server'
 	})

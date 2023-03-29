@@ -27,16 +27,16 @@ export const SendMessage = ({
 		refetch()
 	}
 	return (
-		<div className="flex w-full items-center justify-center gap-4 border-t">
+		<div className="flex w-full items-center justify-center gap-4 border-t border-brand-200 py-2 dark:border-brand-700">
 			<input
-				className="p3 w-2/4 rounded-lg border-b border-brand-500 bg-transparent p-3 text-brand-500 focus:ring-brand-500"
+				className=" w-2/4 rounded-lg border-b border-brand-500 bg-transparent p-3 text-brand-900 focus:ring-brand-500 dark:text-brand-100"
 				type="text"
 				value={text}
 				onChange={handleTextChange}
 			/>
 
 			<button
-				className="btn rounded-lg bg-gradient-to-r from-brand-400 to-brand-500 p-3  text-brand-100"
+				className="btn rounded-lg bg-gradient-to-r from-brand-400 to-brand-500 p-3 text-brand-100 hover:text-brand-100/80"
 				onClick={handleSendMessage}
 				disabled={text.length === 0}
 			>
